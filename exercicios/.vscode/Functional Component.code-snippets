@@ -1,0 +1,16 @@
+{
+  "Print to console": {
+    "scope": "javascript,typescript",
+    "prefix": "fc",
+    "body": [
+      "import React from \"react\";",
+      "import { View } from \"react-native\";",
+      "\nexport default function $1(props) {",
+      "\treturn (",
+      "\t\t<View>\n\t\t\t$2\n\t\t</View>",
+      "\t);",
+      "}"
+    ],
+    "description": "Log output to console"
+  }
+}
