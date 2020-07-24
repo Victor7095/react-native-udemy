@@ -1,15 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import ContadorV2 from "./src/components/contador/ContadorV2";
-import UsuarioLogado from "./src/components/UsuarioLogado";
+import ListaProdutos from "./src/components/produtos/ListaProdutos";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <UsuarioLogado
-        usuario={{ nome: "Yan", email: "victoryan345@gmail.com" }}
-      />
+      <ListaProdutos />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
