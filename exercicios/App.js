@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import DigiteSeuNome from "./src/components/DigiteSeuNome";
+import Flexbox from "./src/components/layout/FlexboxV1";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <DigiteSeuNome />
+      <Flexbox />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
