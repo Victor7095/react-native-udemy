@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import ListaProdutos from "./src/components/produtos/ListaProdutosV2";
+import DigiteSeuNome from "./src/components/DigiteSeuNome";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ListaProdutos />
+      <DigiteSeuNome />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
