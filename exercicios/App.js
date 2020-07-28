@@ -6,7 +6,7 @@ import Mega from "./src/components/mega/Mega";
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Mega />
+      <Mega qtdeNumeros={7}/>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
