@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import Flexbox from "./src/components/layout/FlexboxV4";
+import Mega from "./src/components/mega/Mega";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Flexbox />
+      <Mega />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
