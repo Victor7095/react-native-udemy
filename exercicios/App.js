@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import Flexbox from "./src/components/layout/FlexboxV1";
+import Flexbox from "./src/components/layout/FlexboxV2";
 
 export default function App() {
   return (
@@ -15,8 +15,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffeeee",
-    alignItems: "center",
+    backgroundColor: "#eeddee",
     justifyContent: "center",
+    alignItems: "center",
   },
 });

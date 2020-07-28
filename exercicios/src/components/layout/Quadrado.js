@@ -7,7 +7,6 @@ export default function (props) {
     width: 50,
     backgroundColor: props.color || "#000000",
     borderWidth: 2,
-    borderColor: "#000000",
-    alignSelf: "center"
+    borderColor: "#000000"
   }}></View>;
 }
