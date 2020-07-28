@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import Flexbox from "./src/components/layout/FlexboxV2";
+import Flexbox from "./src/components/layout/FlexboxV3";
 
 export default function App() {
   return (
