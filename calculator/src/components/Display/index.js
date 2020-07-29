@@ -1,8 +1,15 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
+import styles from "./styles";
 
-const Display = () => {
-  return <View></View>;
+const Display = (props) => {
+  return (
+    <View style={styles.Display}>
+      <Text style={styles.DisplayValue} numberOfLines={1}>
+        {props.value}
+      </Text>
+    </View>
+  );
 };
 
 export default Display;
