@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   ButtonBig: {
     borderRadius: Dimensions.get("window").width / 8,
-    width: Dimensions.get("window").width / 2- 10,
+    width: Dimensions.get("window").width / 2 - 10,
   },
   ButtonLightGray: {
     backgroundColor: "#bbbbbb",
@@ -19,9 +19,15 @@ export default StyleSheet.create({
   ButtonOrange: {
     backgroundColor: "#ff9900",
   },
+  ButtonSelected: {
+    backgroundColor: "#fff",
+  },
   ButtonText: {
     color: "#fff",
     padding: 20,
     fontSize: 40,
+  },
+  ButtonSelectedText: {
+    color: "#ff9900",
   },
 });

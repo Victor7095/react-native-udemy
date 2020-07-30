@@ -8,8 +8,9 @@ export default StyleSheet.create({
     alignItems: "flex-end",
   },
   DisplayValue: {
-    fontSize: 60,
+    fontSize: 100,
     color: "#fff",
+    fontWeight: "200",
     textAlign: "right",
   }
 });
