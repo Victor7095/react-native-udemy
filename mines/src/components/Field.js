@@ -57,6 +57,5 @@ const styles = StyleSheet.create({
   exploded: {
     backgroundColor: "red",
     borderColor: "red",
-  },
-  flagged: {}
+  }
 });
