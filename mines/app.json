@@ -21,6 +21,7 @@
     },
     "web": {
       "favicon": "./assets/appIcon/mines-icon-1024@1x.png"
-    }
+    },
+    "description": ""
   }
 }

@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import Display from "./components/Display";
 import Button from "./components/Button";
 
@@ -75,7 +75,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Display value={displayValue} />
       <View style={styles.buttons}>
-        <Button color="lightGray" onPressed={clearDisplay}>
+        <Button color="lightRed" onPressed={clearDisplay}>
           AC
         </Button>
         <Button color="lightGray" onPressed={() => unaryOperation("+/-")}>
@@ -137,12 +137,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111111",
+    backgroundColor: "#666",
     alignItems: "center",
     justifyContent: "center",
   },
   buttons: {
     flexWrap: "wrap",
     flexDirection: "row",
+    justifyContent: "space-around"
   },
 });

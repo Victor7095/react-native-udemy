@@ -1,20 +1,21 @@
 import { StyleSheet, Dimensions } from "react-native";
 export default StyleSheet.create({
   Button: {
-    borderRadius: Dimensions.get("window").width / 8,
-    height: Dimensions.get("window").width / 4 - 10,
-    width: Dimensions.get("window").width / 4 - 10,
+    height: Dimensions.get("window").width / 4 - 30,
+    width: Dimensions.get("window").width / 4 - 30,
     backgroundColor: "#555555",
     alignItems: "center",
     justifyContent: "center",
-    margin: 5,
+    margin: 15,
   },
   ButtonBig: {
-    borderRadius: Dimensions.get("window").width / 8,
-    width: Dimensions.get("window").width / 2 - 10,
+    width: Dimensions.get("window").width / 2 - 30,
   },
   ButtonLightGray: {
     backgroundColor: "#bbbbbb",
+  },
+  ButtonLightRed: {
+    backgroundColor: "#ff5555",
   },
   ButtonOrange: {
     backgroundColor: "#ff9900",
@@ -24,10 +25,11 @@ export default StyleSheet.create({
   },
   ButtonText: {
     color: "#fff",
-    padding: 20,
-    fontSize: 40,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    fontSize: 50,
   },
   ButtonSelectedText: {
     color: "#ff9900",
-  },
+  }
 });
