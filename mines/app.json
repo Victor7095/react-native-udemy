@@ -4,11 +4,11 @@
     "slug": "mines",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appIcon/mines-icon-1024@1x.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/appIcon/mines-icon-1024@1x.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#eeeeee"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -20,7 +20,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/appIcon/mines-icon-1024@1x.png"
     }
   }
 }

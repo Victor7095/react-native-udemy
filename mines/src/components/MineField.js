@@ -27,5 +27,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#EEE",
   },
-  fieldRow: { flexDirection: "row", justifyContent: "center" },
+  fieldRow: { flexDirection: "row" },
 });
