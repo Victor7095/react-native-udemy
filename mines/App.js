@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import Header from "./src/components/Header";
 import MineField from "./src/components/MineField";
 import params from "./src/params";
 import {
@@ -10,10 +11,19 @@ import {
   hasExploded,
   wonGame,
   showMines,
-  invertFlag
+  invertFlag,
+  flagsUsed,
 } from "./src/functions";
 
 export default function App() {
+  const [board, setBoard] = useState([]);
+  const [won, setWon] = useState(false);
+  const [lost, setLost] = useState(false);
+
+  useEffect(() => {
+    createBoardState();
+  }, []);
+
   const minesAmount = () => {
     const rows = params.getRowsAmount();
     const columns = params.getColumnsAmount();
@@ -25,12 +35,10 @@ export default function App() {
     const rows = params.getRowsAmount();
     const columns = params.getColumnsAmount();
 
-    return createMinedBoard(rows, columns, minesAmount());
+    setBoard(createMinedBoard(rows, columns, minesAmount()));
+    setWon(false);
+    setLost(false);
   };
-
-  const [board, setBoard] = useState(createBoardState());
-  const [won, setWon] = useState(false);
-  const [lost, setLost] = useState(false);
 
   const onOpenField = (row, column) => {
     const boardCopy = cloneBoard(board);
@@ -62,7 +70,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
-      <MineField board={board} onOpenField={onOpenField} onSelectField={onSelectField}></MineField>
+      <Header
+        flagsLeft={minesAmount() - flagsUsed(board)}
+        onNewGame={() => createBoardState()}
+      />
+      <MineField
+        board={board}
+        onOpenField={onOpenField}
+        onSelectField={onSelectField}
+      ></MineField>
     </View>
   );
 }
