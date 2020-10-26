@@ -5,7 +5,15 @@ import Mine from "./Mine";
 import params from "../params";
 
 export default (props) => {
-  const { mined, opened, nearMines, exploded, flagged, onOpen } = props;
+  const {
+    mined,
+    opened,
+    nearMines,
+    exploded,
+    flagged,
+    onOpen,
+    onSelect,
+  } = props;
   const styleField = [styles.field];
   if (opened) styleField.push(styles.opened);
   if (exploded) styleField.push(styles.exploded);
@@ -21,7 +29,7 @@ export default (props) => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={onOpen}>
+    <TouchableWithoutFeedback onPress={onOpen} onLongPress={onSelect}>
       <View style={styleField}>
         {flagged && !opened && <Flag />}
         {mined && opened && <Mine />}

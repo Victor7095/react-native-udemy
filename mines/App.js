@@ -10,6 +10,7 @@ import {
   hasExploded,
   wonGame,
   showMines,
+  invertFlag
 } from "./src/functions";
 
 export default function App() {
@@ -48,10 +49,20 @@ export default function App() {
     setWon(won);
   };
 
+  const onSelectField = (row, column) => {
+    const boardCopy = cloneBoard(board);
+    invertFlag(boardCopy, row, column);
+    const won = wonGame(boardCopy);
+    if (won) {
+      Alert.alert("Parebéns!", "Você venceu o jogo !!!");
+    }
+    setBoard(boardCopy);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
-      <MineField board={board} onOpenField={onOpenField}></MineField>
+      <MineField board={board} onOpenField={onOpenField} onSelectField={onSelectField}></MineField>
     </View>
   );
 }

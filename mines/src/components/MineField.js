@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Field from "./Field";
 
-export default ({ board, onOpenField }) => {
+export default ({ board, onOpenField, onSelectField }) => {
   const rows = board.map((row, rowIndex) => {
     const fields = row.map((field, columnIndex) => {
       return (
@@ -10,6 +10,7 @@ export default ({ board, onOpenField }) => {
           key={columnIndex}
           {...field}
           onOpen={() => onOpenField(rowIndex, columnIndex)}
+          onSelect={() => onSelectField(rowIndex, columnIndex)}
         />
       );
     });
