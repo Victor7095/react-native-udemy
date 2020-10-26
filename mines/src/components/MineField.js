@@ -2,10 +2,16 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Field from "./Field";
 
-export default (props) => {
-  const rows = props.board.map((row, rowIndex) => {
+export default ({ board, onOpenField }) => {
+  const rows = board.map((row, rowIndex) => {
     const fields = row.map((field, columnIndex) => {
-      return <Field key={columnIndex} {...field} />;
+      return (
+        <Field
+          key={columnIndex}
+          {...field}
+          onOpen={() => onOpenField(rowIndex, columnIndex)}
+        />
+      );
     });
     return (
       <View key={rowIndex} style={styles.fieldRow}>
