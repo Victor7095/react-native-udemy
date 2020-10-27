@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import ScreenA from "./src/views/ScreenA";
+import ScreenB from "./src/views/ScreenB";
+import ScreenC from "./src/views/ScreenC";
 
-export default function App() {
+export default (props) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <StatusBar style="dark" />
+      <ScreenA/>
+      <ScreenB/>
+      <ScreenC/>
+    </SafeAreaView>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
