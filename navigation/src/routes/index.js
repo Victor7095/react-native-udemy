@@ -6,6 +6,6 @@ import Drawer from "./Drawer";
 
 export default () => (
   <NavigationContainer>
-    <Drawer></Drawer>
+    <Tabs></Tabs>
   </NavigationContainer>
 );
