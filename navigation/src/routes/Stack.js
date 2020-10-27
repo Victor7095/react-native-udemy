@@ -27,7 +27,7 @@ export default (props) => {
       <Stack.Screen name="ScreenC">
         {(props) => (
           <NavigateStack {...props} next="ScreenC" previous>
-            <ScreenC />
+            <ScreenC {...props}/>
           </NavigateStack>
         )}
       </Stack.Screen>

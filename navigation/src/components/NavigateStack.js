@@ -17,7 +17,9 @@ export default (props) => {
           <Button
             title="Next"
             onPress={() => {
-              props.navigation.push(props.next);
+              props.navigation.push(props.next, {
+                num: parseInt(Math.random() * 100),
+              });
             }}
           ></Button>
         )}
