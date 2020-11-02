@@ -1,13 +1,31 @@
 import React, { Component } from "react";
-import { ImageBackground, Text, View, StyleSheet } from "react-native";
+import {
+  ImageBackground,
+  Text,
+  View,
+  FlatList,
+  StyleSheet,
+} from "react-native";
 import todayImage from "../../assets/images/today.jpg";
 import moment from "moment";
 import "moment/locale/pt-br";
+import uuid from "uuid";
 
 import commonStyles from "../commonStyles";
 import Task from "../components/Task";
 
 export default class TaskList extends Component {
+  state = {
+    tasks: [
+      {
+        id: uuid(),
+        description: "Task #1",
+        estimatedAt: new Date(),
+        doneAt: new Date(),
+      },
+      { id: uuid(), description: "Task #2", estimatedAt: new Date() },
+    ],
+  };
   render() {
     const today = moment().locale("pt-br").format("ddd, D [de] MMMM");
     return (
@@ -19,25 +37,17 @@ export default class TaskList extends Component {
           </View>
         </ImageBackground>
         <View style={styles.taskList}>
-          <Task
-            description="MyTask"
-            estimatedAt={new Date()}
-            doneAt={new Date()}
-          />
-          <Task
-            description="MyTask"
-            estimatedAt={new Date()}
-            doneAt={new Date()}
-          />
-          <Task
-            description="MyTask"
-            estimatedAt={new Date()}
-          />
-          <Task
-            description="MyTask"
-            estimatedAt={new Date()}
-            doneAt={new Date()}
-          />
+          <FlatList
+            data={this.state.tasks}
+            keyExtractor={(task) => `${task.id}`}
+            renderItem={({ item: task }) => (
+              <Task
+                description={task.description}
+                estimatedAt={task.estimatedAt}
+                doneAt={task.doneAt}
+              />
+            )}
+          ></FlatList>
         </View>
       </View>
     );
