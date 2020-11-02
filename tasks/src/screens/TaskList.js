@@ -22,6 +22,7 @@ import commonStyles from "../commonStyles";
 export default class TaskList extends Component {
   state = {
     showDoneTasks: true,
+    visibleTasks: [],
     tasks: [
       {
         id: uuid(),
@@ -33,6 +34,10 @@ export default class TaskList extends Component {
     ],
   };
 
+  componentDidMount = () => {
+    this.filterTasks();
+  };
+
   toggleTask = (taskId) => {
     const tasks = [...this.state.tasks];
     tasks.forEach((task) => {
@@ -40,11 +45,25 @@ export default class TaskList extends Component {
         task.doneAt = task.doneAt ? null : new Date();
       }
     });
-    this.setState({ tasks });
+    this.setState({ tasks }, this.filterTasks);
   };
 
   toggleFilter = () => {
-    this.setState({ showDoneTasks: !this.state.showDoneTasks });
+    this.setState(
+      { showDoneTasks: !this.state.showDoneTasks },
+      this.filterTasks
+    );
+  };
+
+  filterTasks = () => {
+    let visibleTasks = null;
+    if (this.state.showDoneTasks) {
+      visibleTasks = [...this.state.tasks];
+    } else {
+      const pending = (task) => task.doneAt == null;
+      visibleTasks = this.state.tasks.filter(pending);
+    }
+    this.setState({ visibleTasks });
   };
 
   render() {
@@ -68,7 +87,7 @@ export default class TaskList extends Component {
         </ImageBackground>
         <View style={styles.taskList}>
           <FlatList
-            data={this.state.tasks}
+            data={this.state.visibleTasks}
             keyExtractor={(task) => `${task.id}`}
             renderItem={({ item: task }) => (
               <Task {...task} toggleTask={this.toggleTask} />
@@ -106,6 +125,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     marginHorizontal: 20,
-    marginTop: Platform.OS === "ios" ? 60 : 20
+    marginTop: Platform.OS === "ios" ? 60 : 20,
   },
 });
