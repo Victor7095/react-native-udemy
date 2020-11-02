@@ -5,6 +5,7 @@ import moment from "moment";
 import "moment/locale/pt-br";
 
 import commonStyles from "../commonStyles";
+import Task from "../components/Task";
 
 export default class TaskList extends Component {
   render() {
@@ -18,16 +19,25 @@ export default class TaskList extends Component {
           </View>
         </ImageBackground>
         <View style={styles.taskList}>
-          <Text>Task #1</Text>
-          <Text>Task #2</Text>
-          <Text>Task #3</Text>
-          <Text>Task #4</Text>
-          <Text>Task #5</Text>
-          <Text>Task #6</Text>
-          <Text>Task #7</Text>
-          <Text>Task #8</Text>
-          <Text>Task #9</Text>
-          <Text>Task #10</Text>
+          <Task
+            description="MyTask"
+            estimatedAt={new Date()}
+            doneAt={new Date()}
+          />
+          <Task
+            description="MyTask"
+            estimatedAt={new Date()}
+            doneAt={new Date()}
+          />
+          <Task
+            description="MyTask"
+            estimatedAt={new Date()}
+          />
+          <Task
+            description="MyTask"
+            estimatedAt={new Date()}
+            doneAt={new Date()}
+          />
         </View>
       </View>
     );
