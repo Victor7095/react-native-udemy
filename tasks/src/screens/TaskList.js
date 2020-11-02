@@ -3,19 +3,25 @@ import {
   ImageBackground,
   Text,
   View,
+  TouchableOpacity,
   FlatList,
   StyleSheet,
+  Platform,
 } from "react-native";
-import todayImage from "../../assets/images/today.jpg";
+import Icon from "@expo/vector-icons/FontAwesome5";
+
 import moment from "moment";
 import "moment/locale/pt-br";
-import uuid from "uuid";
 
-import commonStyles from "../commonStyles";
+import uuid from "uuid";
+import todayImage from "../../assets/images/today.jpg";
+
 import Task from "../components/Task";
+import commonStyles from "../commonStyles";
 
 export default class TaskList extends Component {
   state = {
+    showDoneTasks: true,
     tasks: [
       {
         id: uuid(),
@@ -37,11 +43,24 @@ export default class TaskList extends Component {
     this.setState({ tasks });
   };
 
+  toggleFilter = () => {
+    this.setState({ showDoneTasks: !this.state.showDoneTasks });
+  };
+
   render() {
     const today = moment().locale("pt-br").format("ddd, D [de] MMMM");
     return (
       <View style={styles.container}>
         <ImageBackground source={todayImage} style={styles.background}>
+          <View style={styles.iconBar}>
+            <TouchableOpacity onPress={this.toggleFilter}>
+              <Icon
+                name={this.state.showDoneTasks ? "eye" : "eye-slash"}
+                size={20}
+                color={commonStyles.colors.secondary}
+              />
+            </TouchableOpacity>
+          </View>
           <View style={styles.titleBar}>
             <Text style={styles.title}>Hoje</Text>
             <Text style={styles.subtitle}>{today}</Text>
@@ -82,5 +101,11 @@ const styles = StyleSheet.create({
     color: commonStyles.colors.secondary,
     marginLeft: 20,
     marginBottom: 20,
+  },
+  iconBar: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginHorizontal: 20,
+    marginTop: Platform.OS === "ios" ? 60 : 20
   },
 });
