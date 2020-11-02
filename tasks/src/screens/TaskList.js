@@ -26,6 +26,17 @@ export default class TaskList extends Component {
       { id: uuid(), description: "Task #2", estimatedAt: new Date() },
     ],
   };
+
+  toggleTask = (taskId) => {
+    const tasks = [...this.state.tasks];
+    tasks.forEach((task) => {
+      if (task.id === taskId) {
+        task.doneAt = task.doneAt ? null : new Date();
+      }
+    });
+    this.setState({ tasks });
+  };
+
   render() {
     const today = moment().locale("pt-br").format("ddd, D [de] MMMM");
     return (
@@ -41,11 +52,7 @@ export default class TaskList extends Component {
             data={this.state.tasks}
             keyExtractor={(task) => `${task.id}`}
             renderItem={({ item: task }) => (
-              <Task
-                description={task.description}
-                estimatedAt={task.estimatedAt}
-                doneAt={task.doneAt}
-              />
+              <Task {...task} toggleTask={this.toggleTask} />
             )}
           ></FlatList>
         </View>
