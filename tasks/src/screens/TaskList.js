@@ -18,10 +18,12 @@ import todayImage from "../../assets/images/today.jpg";
 
 import Task from "../components/Task";
 import commonStyles from "../commonStyles";
+import AddTask from "./AddTask";
 
 export default class TaskList extends Component {
   state = {
     showDoneTasks: true,
+    showAddTaskModal: true,
     visibleTasks: [],
     tasks: [
       {
@@ -70,6 +72,10 @@ export default class TaskList extends Component {
     const today = moment().locale("pt-br").format("ddd, D [de] MMMM");
     return (
       <View style={styles.container}>
+        <AddTask
+          isVisible={this.state.showAddTaskModal}
+          onCancel={() => this.setState({ showAddTaskModal: false })}
+        />
         <ImageBackground source={todayImage} style={styles.background}>
           <View style={styles.iconBar}>
             <TouchableOpacity onPress={this.toggleFilter}>
