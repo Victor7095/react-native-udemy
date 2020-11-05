@@ -15,8 +15,6 @@ import Icon from "@expo/vector-icons/FontAwesome5";
 import moment from "moment";
 import "moment/locale/pt-br";
 
-import uuid from "uuid";
-
 import commonStyles from "../commonStyles";
 
 const initialState = {
@@ -52,6 +50,15 @@ export default class AddTask extends Component {
     return datepicker;
   };
 
+  save = () => {
+    const newTask = {
+      desc: this.state.desc,
+      date: this.state.date,
+    };
+    if (this.props.onSave) this.props.onSave(newTask);
+    this.setState({ ...initialState });
+  };
+
   render() {
     return (
       <Modal
@@ -75,7 +82,7 @@ export default class AddTask extends Component {
                 <TouchableOpacity onPress={this.props.onCancel}>
                   <Text style={styles.button}>Cancelar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.save}>
                   <Text style={styles.button}>Salvar</Text>
                 </TouchableOpacity>
               </View>
@@ -126,6 +133,6 @@ const styles = StyleSheet.create({
   date: {
     fontFamily: commonStyles.fontFamily,
     fontSize: 20,
-    marginLeft: 15
+    marginLeft: 15,
   },
 });
