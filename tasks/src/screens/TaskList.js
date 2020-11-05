@@ -23,7 +23,7 @@ import AddTask from "./AddTask";
 export default class TaskList extends Component {
   state = {
     showDoneTasks: true,
-    showAddTaskModal: true,
+    showAddTaskModal: false,
     visibleTasks: [],
     tasks: [
       {
@@ -100,6 +100,13 @@ export default class TaskList extends Component {
             )}
           ></FlatList>
         </View>
+        <TouchableOpacity
+          style={styles.addButton}
+          activeOpacity={0.7}
+          onPress={() => this.setState({ showAddTaskModal: true })}
+        >
+          <Icon name="plus" size={20} color={commonStyles.colors.secondary} />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -132,5 +139,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginHorizontal: 20,
     marginTop: Platform.OS === "ios" ? 60 : 20,
+  },
+  addButton: {
+    position: "absolute",
+    right: 25,
+    bottom: 40,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: commonStyles.colors.today,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

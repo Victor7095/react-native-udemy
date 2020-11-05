@@ -14,7 +14,6 @@ import moment from "moment";
 import "moment/locale/pt-br";
 
 import uuid from "uuid";
-import todayImage from "../../assets/images/today.jpg";
 
 import commonStyles from "../commonStyles";
 
