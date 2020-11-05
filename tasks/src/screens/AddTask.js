@@ -6,8 +6,10 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Modal,
+  Platform,
   StyleSheet,
 } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import Icon from "@expo/vector-icons/FontAwesome5";
 
 import moment from "moment";
@@ -19,10 +21,36 @@ import commonStyles from "../commonStyles";
 
 const initialState = {
   desc: "",
+  date: new Date(),
+  showDatePicker: false,
 };
 
 export default class AddTask extends Component {
   state = { ...initialState };
+
+  getDatePicker = () => {
+    let datepicker = (
+      <DateTimePicker
+        value={this.state.date}
+        onChange={(_, date) => this.setState({ date, showDatePicker: false })}
+        mode="date"
+      />
+    );
+    if (Platform.OS === "android") {
+      const dateString = moment(this.state.date).format("ddd, D [de] MMMM");
+      datepicker = (
+        <View>
+          <TouchableOpacity
+            onPress={() => this.setState({ showDatePicker: true })}
+          >
+            <Text style={styles.date}>{dateString}</Text>
+          </TouchableOpacity>
+          {this.state.showDatePicker && datepicker}
+        </View>
+      );
+    }
+    return datepicker;
+  };
 
   render() {
     return (
@@ -42,6 +70,7 @@ export default class AddTask extends Component {
                 value={this.state.desc}
                 onChangeText={(desc) => this.setState({ desc })}
               />
+              {this.getDatePicker()}
               <View style={styles.buttons}>
                 <TouchableOpacity onPress={this.props.onCancel}>
                   <Text style={styles.button}>Cancelar</Text>
@@ -93,5 +122,10 @@ const styles = StyleSheet.create({
     margin: 20,
     marginRight: 30,
     color: commonStyles.colors.today,
+  },
+  date: {
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 20,
+    marginLeft: 15
   },
 });
