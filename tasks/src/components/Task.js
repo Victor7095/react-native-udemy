@@ -1,5 +1,13 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
+
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import Icon from "@expo/vector-icons/FontAwesome5";
 import moment from "moment";
 import "moment/locale/pt-br";
@@ -12,18 +20,47 @@ export default (props) => {
     : {};
   const date = props.doneAt || props.estimatedAt;
   const formattedDate = moment(date, "pt-br").format("ddd, D [de] MMMM");
-  return (
-    <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={() => props.toggleTask(props.id)}>
-        <View style={styles.checkContainer}>{getCheckView(props.doneAt)}</View>
-      </TouchableWithoutFeedback>
-      <View>
-        <Text style={[styles.description, doneOrNotStyle]}>
-          {props.description}
-        </Text>
-        <Text style={styles.date}>{formattedDate}</Text>
+
+  const getLeftContent = () => {
+    return (
+      <View style={styles.left}>
+        <Icon name="trash" size={20} color="#FFF" style={styles.excludeIcon} />
+        <Text style={styles.excludeText}>Excluir</Text>
       </View>
-    </View>
+    );
+  };
+
+  const getRightContent = () => {
+    return (
+      <TouchableOpacity
+        style={styles.right}
+        onPress={() => props.onDelete(props.id)}
+      >
+        <Icon name="trash" size={30} color="#FFF" />
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <Swipeable
+      renderLeftActions={getLeftContent}
+      renderRightActions={getRightContent}
+      onSwipeableLeftOpen={() => props.onDelete(props.id)}
+    >
+      <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={() => props.onToggleTask(props.id)}>
+          <View style={styles.checkContainer}>
+            {getCheckView(props.doneAt)}
+          </View>
+        </TouchableWithoutFeedback>
+        <View>
+          <Text style={[styles.description, doneOrNotStyle]}>
+            {props.description}
+          </Text>
+          <Text style={styles.date}>{formattedDate}</Text>
+        </View>
+      </View>
+    </Swipeable>
   );
 };
 
@@ -45,6 +82,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderColor: "#AAA",
+    backgroundColor: "#FFF",
   },
   checkContainer: {
     width: "20%",
@@ -75,5 +113,27 @@ const styles = StyleSheet.create({
     fontFamily: commonStyles.fontFamily,
     color: commonStyles.colors.mainText,
     fontSize: 15,
+  },
+  left: {
+    flex: 1,
+    backgroundColor: "red",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  excludeText: {
+    fontFamily: commonStyles.fontFamily,
+    color: "#FFF",
+    fontSize: 20,
+    margin: 10,
+  },
+  excludeIcon: {
+    marginLeft: 10,
+  },
+  right: {
+    backgroundColor: "red",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingHorizontal: 20,
   },
 });

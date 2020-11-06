@@ -10,7 +10,6 @@ import {
   StyleSheet,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import Icon from "@expo/vector-icons/FontAwesome5";
 
 import moment from "moment";
 import "moment/locale/pt-br";
