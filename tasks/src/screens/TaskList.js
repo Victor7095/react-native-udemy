@@ -10,6 +10,7 @@ import {
   Platform,
 } from "react-native";
 import Icon from "@expo/vector-icons/FontAwesome5";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import moment from "moment";
 import "moment/locale/pt-br";
@@ -21,24 +22,20 @@ import Task from "../components/Task";
 import commonStyles from "../commonStyles";
 import AddTask from "./AddTask";
 
-export default class TaskList extends Component {
-  state = {
-    showDoneTasks: true,
-    showAddTaskModal: false,
-    visibleTasks: [],
-    tasks: [
-      {
-        id: uuid(),
-        description: "Task #1",
-        estimatedAt: new Date(),
-        doneAt: new Date(),
-      },
-      { id: uuid(), description: "Task #2", estimatedAt: new Date() },
-    ],
-  };
+const initialState = {
+  showDoneTasks: true,
+  showAddTaskModal: false,
+  visibleTasks: [],
+  tasks: [],
+};
 
-  componentDidMount = () => {
-    this.filterTasks();
+export default class TaskList extends Component {
+  state = { ...initialState };
+
+  componentDidMount = async () => {
+    const tasksString = await AsyncStorage.getItem("tasks");
+    const tasks = JSON.parse(tasksString) || [];
+    this.setState({ tasks }, this.filterTasks);
   };
 
   toggleTask = (taskId) => {
@@ -67,6 +64,7 @@ export default class TaskList extends Component {
       visibleTasks = this.state.tasks.filter(pending);
     }
     this.setState({ visibleTasks });
+    AsyncStorage.setItem("tasks", JSON.stringify(this.state.tasks));
   };
 
   addTask = (newTask) => {
@@ -85,7 +83,7 @@ export default class TaskList extends Component {
   };
 
   deleteTask = (taskId) => {
-    const tasks = this.state.tasks.filter(task => task.id !== taskId);
+    const tasks = this.state.tasks.filter((task) => task.id !== taskId);
     this.setState({ tasks }, this.filterTasks);
   };
 
@@ -118,7 +116,11 @@ export default class TaskList extends Component {
             data={this.state.visibleTasks}
             keyExtractor={(task) => `${task.id}`}
             renderItem={({ item: task }) => (
-              <Task {...task} onToggleTask={this.toggleTask} onDelete={this.deleteTask} />
+              <Task
+                {...task}
+                onToggleTask={this.toggleTask}
+                onDelete={this.deleteTask}
+              />
             )}
           ></FlatList>
         </View>
