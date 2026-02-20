@@ -14,7 +14,7 @@
     "@react-navigation/drawer": "^5.10.0",
     "axios": "^1.13.5",
     "datetimepicker": "^0.1.39",
-    "expo": "~52.0.17",
+    "expo": "~54.0.33",
     "expo-status-bar": "~1.0.2",
     "moment": "^2.29.4",
     "react": "16.13.1",
